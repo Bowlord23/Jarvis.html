@@ -6,11 +6,10 @@
 </head>
 <body>
 
-  <button onclick="speech ()">Слушать</button>
+  <button onclick="recognizer.start()">Слушать</button>
   <button onclick="talk ()">Проговорить</button>
   <button onclick="window.speechSynthesis.speak(msg)">Остановить</button>
-  <img src="microf.png" alt="Микрофон" onclick="speech ()">
-  <img src="speaker.png" alt="Динамики" onclick="talk ()">
+  <h1 id="lol">lol</h1>
   <script>
   // Создаем распознаватель
   var recognizer = new webkitSpeechRecognition();
@@ -27,11 +26,8 @@
     if (result.isFinal) {
       alert('Вы сказали: ' + result[0].transcript);
     } else {
-      console.log('Промежуточный результат: ', result[0].transcript);
-if ('Привет' == result[0].transcript) { talk ()
-
-}
-    }
+      console.log('Промежуточный результат: ', result[0].transcript);}
+if ('Привет' == result[0].transcript) { talk ()}
   };
 
   function speech () {
