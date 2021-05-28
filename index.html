@@ -8,7 +8,9 @@
 
   <button onclick="speech ()">Слушать</button>
   <button onclick="talk ()">Проговорить</button>
-  <button onclick="stop ()">Остановить</button>
+  <button onclick="window.speechSynthesis.speak(msg)">Остановить</button>
+  <img src="microf.png" alt="Микрофон" onclick="speech ()">
+  <img src="speaker.png" alt="Динамики" onclick="talk ()">
   <script>
   // Создаем распознаватель
   var recognizer = new webkitSpeechRecognition();
@@ -26,6 +28,9 @@
       alert('Вы сказали: ' + result[0].transcript);
     } else {
       console.log('Промежуточный результат: ', result[0].transcript);
+if ('Привет' == result[0].transcript) { talk ()
+
+}
     }
   };
 
@@ -35,17 +40,16 @@
   }
 
   var synth = window.speechSynthesis;
-  var utterance = new SpeechSynthesisUtterance('How about we say this now? This is quite a long sentence to say.');
+  var utterance = new SpeechSynthesisUtterance('Здравствуй, мой повелитель.');
 
   function talk () {
     synth.speak (utterance);
   }
 
-  function stop () {
-    synth.pause();
-  }
+  let utterance1 = new SpeechSynthesisUtterance("Hallo");
+  speechSynthesis.speak(utterance1);
+
   </script>
 
 </body>
 </html>
-
