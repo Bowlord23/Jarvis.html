@@ -2,36 +2,35 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Распознавание голоса и чтение текста</title>
+  <title>Jarvis</title>
 </head>
 <body>
 
-  <button onclick="recognizer.start()">Слушать</button>
-  <button onclick="talk ()">Проговорить</button>
-  <button onclick="window.speechSynthesis.speak(msg)">Остановить</button>
-  <h1 id="lol">lol</h1>
+  <h1>Доступные команды:</h1>
+  <p>"Привет"</p>
+  <p>"Как дела?"</p>
+  <p>"Диагностика"</p>
+  <button style="height:50px;width:100px" onclick="recognizer.start()">Говорить</button>
+  <em><p>(Пишите свои идеи для команд Джарвиса в коментариях)</p></em>
   <script>
-  // Создаем распознаватель
   var recognizer = new webkitSpeechRecognition();
 
-  // Ставим опцию, чтобы распознавание началось ещё до того, как пользователь закончит говорить
-  recognizer.interimResults = true;
+  recognizer.interimResults = false;
 
-  // Какой язык будем распознавать?
   recognizer.lang = 'ru-Ru';
 
-  // Используем колбек для обработки результатов
   recognizer.onresult = function (event) {
     var result = event.results[event.resultIndex];
     if (result.isFinal) {
       alert('Вы сказали: ' + result[0].transcript);
     } else {
       console.log('Промежуточный результат: ', result[0].transcript);}
-if ('Привет' == result[0].transcript) { talk ()}
+if ('Привет' == result[0].transcript) {talk ()}
+if ('Как дела' == result[0].transcript) {kakdeka()}
+if ('диагностика' == result[0].transcript) {diagnostica()}
   };
 
   function speech () {
-    // Начинаем слушать микрофон и распознавать голос
     recognizer.start();
   }
 
@@ -42,9 +41,11 @@ if ('Привет' == result[0].transcript) { talk ()}
     synth.speak (utterance);
   }
 
-  let utterance1 = new SpeechSynthesisUtterance("Hallo");
-  speechSynthesis.speak(utterance1);
+  let utterance1 = new SpeechSynthesisUtterance("Всё хорошо. Спасибо, что интересуетесь. А как ваши дела?");
+  let dia = new SpeechSynthesisUtterance("Начинаю диагностику системы...");
+  function kakdeka(){speechSynthesis.speak(utterance1);}
 
+  function diagnostica(){speechSynthesis.speak(dia);}
   </script>
 
 </body>
